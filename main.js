@@ -4,8 +4,8 @@ function preload () {
   game.load.image('circle', 'assets/circle.png');
   game.load.image('block', 'assets/earth.png');
   // Firefox does not support MP3 Files so we will use OGG for firefox
-  game.load.audio('looseMusic', ['assets/mainMusic.mp3', 'assets/mainMusic.ogg']);
-
+  game.load.audio('failMusic', ['assets/failMusic.mp3', 'assets/failMusic.ogg']);
+  game.load.audio('mainMusic', ['assets/mainMusic.mp3', 'assets/mainMusic.ogg']);
 };
 
 function create (){
@@ -17,7 +17,7 @@ function create (){
   game.physics.enable(this.circle);
 
   // load main music and play it
-  var looseMusic = game.add.audio('looseMusic');
+  var failMusic = game.add.audio('failMusic');
   var mainMusic = game.add.audio('mainMusic');
   mainMusic.play();
 
@@ -51,7 +51,7 @@ function create (){
   }, 177000);
   setInterval(() => {
     if (this.status == 'loose'){
-      looseMusic.play();
+      failMusic.play();
     }
   }, 46000);
 
@@ -83,7 +83,7 @@ function downKeyFuncUp(){
 
 function update(){
   if ( this.circle.y > window.innerHeight){
-    looseMusic.play();
+    failMusic.play();
     this.status = 'loose';
     alert('Really?! No cheat, that is our rule!! Play again?');
     mainMusic.play();
@@ -101,7 +101,7 @@ function update(){
 }
 
 function restartGame(){
-  looseMusic.play();
+  failMusic.play();
   this.status = 'loose';
   alert('Really?! You got only '+this.score+' ! Play again?');
   mainMusic.play();
