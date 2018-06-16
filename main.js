@@ -9,7 +9,7 @@ function preload () {
 };
 
 function create (){
-
+  this.status = 'play';
   game.stage.backgroundColor = '#fff';
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -44,9 +44,16 @@ function create (){
   this.labelScore = game.add.text(20, 20, "0",
   { font: "30px Arial", fill: "#000" });
 
-
-
-
+  setInterval(() => {
+    if (this.status == 'play'){
+      mainMusic.play();
+    }
+  }, 177000);
+  setInterval(() => {
+    if (this.status == 'loose'){
+      looseMusic.play();
+    }
+  }, 46000);
 
 
   upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -77,7 +84,10 @@ function downKeyFuncUp(){
 function update(){
   if ( this.circle.y > window.innerHeight){
     looseMusic.play();
+    this.status = 'loose';
     alert('Really?! No cheat, that is our rule!! Play again?');
+    mainMusic.play();
+    this.status = 'play';
     this.count = 0;
     this.velo = -100;
     this.blocks.removeAll();
@@ -85,7 +95,6 @@ function update(){
     this.circle.body.velocity.y = 0;
     this.circle.position.x = 40;
     this.circle.position.y = (window.innerHeight / 2) - 20;
-
   }
   game.physics.arcade.overlap(
     this.circle, this.blocks, restartGame, null, this);
@@ -93,8 +102,10 @@ function update(){
 
 function restartGame(){
   looseMusic.play();
+  this.status = 'loose';
   alert('Really?! You got only '+this.score+' ! Play again?');
   mainMusic.play();
+  this.status = 'play';
   this.count = 0;
   this.velo = -100;
   this.blocks.removeAll();
