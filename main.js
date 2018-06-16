@@ -17,9 +17,9 @@ function create (){
   game.physics.enable(this.circle);
 
   // load main music and play it
-  var failMusic = game.add.audio('failMusic');
-  var mainMusic = game.add.audio('mainMusic');
-  mainMusic.play();
+  this.failMusic = game.add.audio('this.failMusic');
+  this.mainMusic = game.add.audio('this.mainMusic');
+  this.mainMusic.play();
 
   this.blocks = game.add.group();
 
@@ -46,12 +46,12 @@ function create (){
 
   setInterval(() => {
     if (this.status == 'play'){
-      mainMusic.play();
+      this.mainMusic.play();
     }
   }, 177000);
   setInterval(() => {
     if (this.status == 'loose'){
-      failMusic.play();
+      this.failMusic.play();
     }
   }, 46000);
 
@@ -83,10 +83,10 @@ function downKeyFuncUp(){
 
 function update(){
   if ( this.circle.y > window.innerHeight){
-    failMusic.play();
+    this.failMusic.play();
     this.status = 'loose';
     alert('Really?! No cheat, that is our rule!! Play again?');
-    mainMusic.play();
+    this.mainMusic.play();
     this.status = 'play';
     this.count = 0;
     this.velo = -100;
@@ -101,10 +101,10 @@ function update(){
 }
 
 function restartGame(){
-  failMusic.play();
+  this.failMusic.play();
   this.status = 'loose';
   alert('Really?! You got only '+this.score+' ! Play again?');
-  mainMusic.play();
+  this.mainMusic.play();
   this.status = 'play';
   this.count = 0;
   this.velo = -100;
