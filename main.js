@@ -82,7 +82,7 @@ function downKeyFuncUp(){
 }
 
 function update(){
-  if ( this.circle.y > window.innerHeight){
+  if (this.circle.y < 0 || this.circle.y > window.innerHeight){
     this.failMusic.play();
     this.status = 'loose';
     alert('Really?! No cheat, that is our rule!! Play again?');
