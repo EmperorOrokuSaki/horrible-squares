@@ -85,7 +85,7 @@ function update(){
   if (this.circle.y < 0 || this.circle.y > window.innerHeight){
     this.failMusic.play();
     this.status = 'loose';
-    alert('Really?! No cheat, that is our rule!! Play again?');
+    alert('No cheating.');
     this.mainMusic.play();
     this.status = 'play';
     this.count = 0;
@@ -103,7 +103,7 @@ function update(){
 function restartGame(){
   this.failMusic.play();
   this.status = 'loose';
-  alert('Really?! You got only '+this.score+' ! Play again?');
+  alert('Your new score is '+this.score+' !');
   this.mainMusic.play();
   this.status = 'play';
   this.count = 0;
